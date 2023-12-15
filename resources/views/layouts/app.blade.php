@@ -13,6 +13,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @if (isset($tinymceScript))
+            {{ $tinymceScript }}
+        @endif
     </head>
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white transition-colors">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
