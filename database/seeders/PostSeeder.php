@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
-use App\Models\PostImage;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -16,11 +16,20 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        // use when generating post without image
-        // a problem will occur when generating a post without image and generating a PostImage to it
-        // it cannot find a post that does not have any image and attach to it
-        // Post::factory(10)->create();
-        PostImage::factory(10)->create();
-        // should add a default image to a when seeding a post
+        // creating post for first 3 user (defualt users)
+        $users = User::limit(3)->get();
+        
+        // Create 2 posts for each specific user
+        foreach ($users as $user) {
+            Post::factory()->count(2)->create(['user_id' => $user->id]);
+        }
+
+        // Generating a post for a distinct new user. Similar to UserSeeder but in reverse (BelongsTo).
+        // Post::factory()
+        //     ->count(3)
+        //     ->for(User::factory()->state([
+        //         'name' => 'Jessica Archer',
+        //     ]))
+        //     ->create();
     }
 }
