@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,18 +13,16 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @if (isset($tinymceScript))
-            {{ $tinymceScript }}
-        @endif
     </head>
-    <body class="font-sans antialiased bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white transition-colors">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
-            
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white font-sans transition-colors">
+
+        @include('layouts.navigation')
+
+        <!--Blog Post List -->
+        <div class="mx-auto flex flex-col items-center justify-center text-white w-11/12 md:w-full pb-20">
+            <x-posts.post-card></x-posts.post-card>
+            <x-posts.post-card></x-posts.post-card>
         </div>
+        
     </body>
 </html>
