@@ -18,9 +18,13 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-
     public function postImage(): HasOne
     {
         return $this->hasOne(PostImage::class);
+    }
+
+    public function tag(): HasOne
+    {
+        return $this->hasOne(Tag::class);
     }
 }
