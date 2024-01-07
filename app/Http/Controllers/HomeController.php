@@ -12,8 +12,12 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = Auth::user();
-        $firstName = explode(' ', $user->name)[0];
-        return view('home')->with('firstName', $firstName);
+        if (Auth::check()) {
+            $user = Auth::user();
+            $firstName = explode(' ', $user->name)[0];
+            return view('home')->with('firstName', $firstName);
+        }
+
+        return view('home');
     }
 }
