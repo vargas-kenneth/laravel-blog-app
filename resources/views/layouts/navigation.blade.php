@@ -18,7 +18,8 @@
 
             <!-- Navigation Links (Hidden on Mobile) -->
             <div class="hidden lg:flex space-x-4">
-                <a href="#" class="text-white hover:text-gray-300">Home</a>
+                <a href="{{ route('home') }}" class="text-white hover:text-gray-300">Home</a>
+                
                 @if (Auth::check())
                     <a href="#" class="text-white hover:text-gray-300">Create Post</a>
                 @endif
