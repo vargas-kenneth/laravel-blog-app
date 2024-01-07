@@ -15,8 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white font-sans transition-colors">
-
-        @include('layouts.navigation')
+        @include('layouts.navigation', ['firstName', $firstName])
 
         <!--Blog Post List -->
         <div class="mx-auto flex flex-col items-center justify-center text-white w-11/12 md:w-full pb-20">
