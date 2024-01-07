@@ -19,19 +19,52 @@
             <!-- Navigation Links (Hidden on Mobile) -->
             <div class="hidden lg:flex space-x-4">
                 <a href="#" class="text-white hover:text-gray-300">Home</a>
-                <a href="#" class="text-white hover:text-gray-300">About</a>
-                <a href="#" class="text-white hover:text-gray-300">Services</a>
-                <a href="#" class="text-white hover:text-gray-300">Contact</a>
+                @if (Auth::check())
+                    <a href="#" class="text-white hover:text-gray-300">Create Post</a>
+                @endif
             </div>
 
-            <!-- Toggle Dark Mode -->
-            <div class="pl-3 hidden lg:block">
-                <label class="dark-mode-switch float-right">
-                    <input type="checkbox" id="dark-mode-switch">
-                    <span class="dark-mode-switch-slider"></span>
-                </label>
+            @if (Auth::check())
+            <div class="hidden lg:block text-white ml-2">
+                <div class="relative">
+                    <div id="user-menu-dropdown-btn" class="flex items-center px-2 border border-transparent hover:border-white transition duration-150 ease-out hover:ease-in">
+                        <span>{{ $firstName }}</span>
+                        <span class="icon-[bxs--down-arrow] ml-2"></span>
+                        <span class="icon-[bxs--up-arrow] ml-2 hidden"></span>
+                    </div>
+                    <div id="user-menu-dropdown-items" class="hidden w-36 absolute right-0 border border-white bg-blue-500 dark:bg-blue-800">
+                        <ul class="list-none">
+                            <li class="border-b p-2 hover:font-bold">
+                                <a href="#">Profile</a>
+                            </li>
+                            <li class="border-b p-2 hover:font-bold">
+                                <a href="#">Post</a>
+                            </li>
+                            <li class="border-b p-2 hover:font-bold">
+                                <div class="flex items-center gap-2">
+                                    <label for="dark-mode-switch">Darkmode:</label>
+                                    <label class="dark-mode-switch float-right">
+                                        <input type="checkbox" id="dark-mode-switch">
+                                        <span class="dark-mode-switch-slider"></span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="p-2 hover:font-bold">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="{{ route('logout') }}" 
+                                        onclick="event.preventDefault(); 
+                                        this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-
+            
+            @endif
         </div>
     </div>
 </nav>
