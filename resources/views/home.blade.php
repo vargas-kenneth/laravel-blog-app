@@ -19,7 +19,7 @@
         @if (Auth::check())
             @include('layouts.navigation', ['firstName', $firstName])
         @else
-            @include('layouts.navigation');
+            @include('layouts.navigation')
         @endif
         <!--Blog Post List -->
         <div class="mx-auto flex flex-col items-center justify-center text-white w-11/12 md:w-full pb-20">
