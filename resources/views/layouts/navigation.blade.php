@@ -22,6 +22,8 @@
                 
                 @if (Auth::check())
                     <a href="#" class="text-white hover:text-gray-300">Create Post</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-white hover:text-gray-300">Login</a>
                 @endif
             </div>
 
