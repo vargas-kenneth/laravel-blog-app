@@ -84,9 +84,20 @@
         </button>
     </div>
     <div class="flex flex-col items-center">
-        <a href="#" class="text-white py-2 hover:bg-gray-700">Home</a>
-        <a href="#" class="text-white py-2 hover:bg-gray-700">About</a>
-        <a href="#" class="text-white py-2 hover:bg-gray-700">Services</a>
-        <a href="#" class="text-white py-2 hover:bg-gray-700">Contact</a>
+        <a href="{{ route('home') }}" class="text-white py-2 hover:bg-gray-700">Home</a>
+
+        @if (Auth::check())
+            <a href="#" class="text-white py-2 hover:bg-gray-700">Create Post</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a class="text-white py-2 hover:bg-gray-700"
+                    href="{{ route('logout') }}" 
+                    onclick="event.preventDefault(); 
+                    this.closest('form').submit();">
+                {{ __('Log Out') }}
+                </a>
+            </form>
+        @endif
+        
     </div>
 </div>
