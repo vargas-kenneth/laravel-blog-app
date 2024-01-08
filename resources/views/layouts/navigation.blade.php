@@ -1,4 +1,8 @@
 <!-- Navigation Bar -->
+@push('scripts')
+    @vite('resources/js/components/navigation.js')
+@endpush
+
 <nav class="w-full bg-blue-500 dark:bg-blue-800 p-4 mb-12">
     <div class="container mx-auto flex justify-between items-center">
 
@@ -18,11 +22,23 @@
 
             <!-- Navigation Links (Hidden on Mobile) -->
             <div class="hidden lg:flex space-x-4">
-                <a href="#" class="text-white hover:text-gray-300">Home</a>
+                <a href="{{ route('home') }}" class="text-white hover:text-gray-300">Home</a>
+                
                 @if (Auth::check())
                     <a href="#" class="text-white hover:text-gray-300">Create Post</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-white hover:text-gray-300">Login</a>
                 @endif
             </div>
+            
+            @if (!Auth::check())
+                <div class="pl-3 hidden lg:block">
+                    <label class="dark-mode-switch float-right">
+                        <input type="checkbox" id="dark-mode-switch">
+                        <span class="dark-mode-switch-slider"></span>
+                    </label>
+                </div>
+            @endif
 
             @if (Auth::check())
             <div class="hidden lg:block text-white ml-2">
@@ -81,9 +97,20 @@
         </button>
     </div>
     <div class="flex flex-col items-center">
-        <a href="#" class="text-white py-2 hover:bg-gray-700">Home</a>
-        <a href="#" class="text-white py-2 hover:bg-gray-700">About</a>
-        <a href="#" class="text-white py-2 hover:bg-gray-700">Services</a>
-        <a href="#" class="text-white py-2 hover:bg-gray-700">Contact</a>
+        <a href="{{ route('home') }}" class="text-white py-2 hover:bg-gray-700">Home</a>
+
+        @if (Auth::check())
+            <a href="#" class="text-white py-2 hover:bg-gray-700">Create Post</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a class="text-white py-2 hover:bg-gray-700"
+                    href="{{ route('logout') }}" 
+                    onclick="event.preventDefault(); 
+                    this.closest('form').submit();">
+                {{ __('Log Out') }}
+                </a>
+            </form>
+        @endif
+        
     </div>
 </div>

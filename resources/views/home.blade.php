@@ -13,15 +13,21 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @include('script.constants')
     </head>
     <body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white font-sans transition-colors">
-        @include('layouts.navigation', ['firstName', $firstName])
 
+        @if (Auth::check())
+            @include('layouts.navigation', ['firstName', $firstName])
+        @else
+            @include('layouts.navigation')
+        @endif
         <!--Blog Post List -->
         <div class="mx-auto flex flex-col items-center justify-center text-white w-11/12 md:w-full pb-20">
             <x-posts.post-card></x-posts.post-card>
             <x-posts.post-card></x-posts.post-card>
         </div>
-        
+
+        @stack('scripts')
     </body>
 </html>
