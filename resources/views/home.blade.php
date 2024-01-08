@@ -26,6 +26,7 @@
             <x-posts.post-card></x-posts.post-card>
             <x-posts.post-card></x-posts.post-card>
         </div>
-        
+
+        @stack('scripts')
     </body>
 </html>

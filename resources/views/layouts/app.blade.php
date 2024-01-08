@@ -26,5 +26,7 @@
                 {{ $slot }}
             </main>
         </div>
+        
+        @push('scripts')
     </body>
 </html>

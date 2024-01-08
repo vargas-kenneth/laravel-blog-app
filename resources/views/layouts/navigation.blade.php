@@ -1,4 +1,8 @@
 <!-- Navigation Bar -->
+@push('scripts')
+    @vite('resources/js/components/navigation.js')
+@endpush
+
 <nav class="w-full bg-blue-500 dark:bg-blue-800 p-4 mb-12">
     <div class="container mx-auto flex justify-between items-center">
 
