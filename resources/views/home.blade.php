@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @include('script.constants')
     </head>
     <body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white font-sans transition-colors">
 

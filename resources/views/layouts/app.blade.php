@@ -13,6 +13,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @include('script.constants')
+
         @if (isset($tinymceScript))
             {{ $tinymceScript }}
         @endif
