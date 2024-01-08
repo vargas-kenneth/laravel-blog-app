@@ -13,10 +13,6 @@ const toggleDarkMode = (event) => {
 
 toggleDarkMode();
 
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    darkModeSwitch.checked = true;
-}
-
 // toggle mobile menu
 const mobileMenuBurger = document.querySelector('#mobile-menu-burger');
 // close mobile menu
