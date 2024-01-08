@@ -26,6 +26,15 @@
                     <a href="{{ route('login') }}" class="text-white hover:text-gray-300">Login</a>
                 @endif
             </div>
+            
+            @if (!Auth::check())
+                <div class="pl-3 hidden lg:block">
+                    <label class="dark-mode-switch float-right">
+                        <input type="checkbox" id="dark-mode-switch">
+                        <span class="dark-mode-switch-slider"></span>
+                    </label>
+                </div>
+            @endif
 
             @if (Auth::check())
             <div class="hidden lg:block text-white ml-2">
