@@ -13,6 +13,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'post_id';
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -20,11 +22,11 @@ class Post extends Model
 
     public function postImage(): HasOne
     {
-        return $this->hasOne(PostImage::class);
+        return $this->hasOne(PostImage::class, 'post_id', 'post_id');
     }
 
     public function tag(): HasOne
     {
-        return $this->hasOne(Tag::class);
+        return $this->hasOne(Tag::class, 'post_id');
     }
 }
