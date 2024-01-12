@@ -24,8 +24,9 @@
         @endif
         <!--Blog Post List -->
         <div class="mx-auto flex flex-col items-center justify-center text-white w-11/12 md:w-full pb-20">
-            <x-posts.post-card></x-posts.post-card>
-            <x-posts.post-card></x-posts.post-card>
+            @foreach($posts as $post)
+                <x-posts.post-card :$post></x-posts.post-card>
+            @endforeach
         </div>
 
         @stack('scripts')
