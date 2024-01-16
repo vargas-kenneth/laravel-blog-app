@@ -44,7 +44,7 @@
             <div class="hidden lg:block text-white ml-2">
                 <div class="relative">
                     <div id="user-menu-dropdown-btn" class="flex items-center px-2 border border-transparent hover:border-white transition duration-150 ease-out hover:ease-in">
-                        <span>{{ $firstName }}</span>
+                        <span>{{ explode(' ', Auth::user()->name)[0]  }}</span>
                         <span class="icon-[bxs--down-arrow] ml-2"></span>
                         <span class="icon-[bxs--up-arrow] ml-2 hidden"></span>
                     </div>
