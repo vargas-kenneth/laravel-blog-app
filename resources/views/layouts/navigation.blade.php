@@ -25,7 +25,7 @@
                 <a href="{{ route('home') }}" class="text-white hover:text-gray-300">Home</a>
                 
                 @if (Auth::check())
-                    <a href="#" class="text-white hover:text-gray-300">Create Post</a>
+                    <a href="{{ route('posts.create') }}" class="text-white hover:text-gray-300">Create Post</a>
                 @else
                     <a href="{{ route('login') }}" class="text-white hover:text-gray-300">Login</a>
                 @endif
@@ -100,7 +100,7 @@
         <a href="{{ route('home') }}" class="text-white py-2 hover:bg-gray-700">Home</a>
 
         @if (Auth::check())
-            <a href="#" class="text-white py-2 hover:bg-gray-700">Create Post</a>
+            <a href="{{ route('posts.create') }}" class="text-white py-2 hover:bg-gray-700">Create Post</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <a class="text-white py-2 hover:bg-gray-700"
