@@ -11,6 +11,8 @@ class Tag extends Model
     use HasFactory;
 
     protected $guarded = [];
+    public $timestamps = false;
+
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
