@@ -32,11 +32,6 @@ class HomeController extends Controller
         // Limit the post when using eager loading
         $limitPost = $posts->take(10);
         $data = ['posts' => $limitPost];
-        
-        if (Auth::check()) {
-            $user = Auth::user();
-            $data['firstName'] = explode(' ', $user->name)[0];
-        }
 
         return view('home', $data);
     }
