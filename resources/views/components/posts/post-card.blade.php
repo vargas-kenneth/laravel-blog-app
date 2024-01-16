@@ -17,7 +17,7 @@
                         {{ Str::of($post->title)->limit(35) }}
                     </h2>
                 </a>
-                <p class="leading-relaxed">{{ Str::of($post->content)->limit(200) }}</p>
+                <p class="leading-relaxed">{!! Str::of($post->content)->limit(200) !!}</p>
             </div>
         </header>                    
         
