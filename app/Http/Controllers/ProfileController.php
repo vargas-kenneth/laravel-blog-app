@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Carbon;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,5 +57,29 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * List of user Posts
+     */
+    public function userPosts(String $username)
+    {
+        // $posts = Post::with('user:id,name', 'postImage', 'tag')->latest('updated_at')->get();
+        $posts = Auth::user()->posts()->latest('updated_at')->get();
+
+        $posts->each(function($post) {
+            $post->time_posted = $post->updated_at->diffForHumans();
+
+            if ($post->updated_at->diffInHours(Carbon::now()) > 24) {
+                $carbonDate = Carbon::parse($post->updated_at);
+                $post->time_posted = $carbonDate->format('F j, Y g:i A');
+            }
+        });
+
+        // Limit the post when using eager loading
+        $limitPost = $posts->take(10);
+        $data = ['posts' => $limitPost];
+        
+        return view('profile.posts', $data);
     }
 }
