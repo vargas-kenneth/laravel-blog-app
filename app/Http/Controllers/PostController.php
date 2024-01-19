@@ -119,8 +119,6 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $postImage = $post->postImage;
-            $imagePath = $postImage->image_path;
-            $imageName = $postImage->image_name;
 
             $imageName = $uuid . '_' . $image->getClientOriginalName();
             $image->storeAs($postImage->image_path, $imageName, 'local');
