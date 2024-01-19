@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\PostImage;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -37,6 +38,20 @@ class Post extends Model
     {
         return Attribute::make(
             get: fn () => optional($this->postImage)->image_path . optional($this->postImage)->image_name,
+        );
+    }
+
+    public function timePosted(): Attribute
+    {
+        $timePosted = $this->updated_at->diffForHumans();
+
+        if ($this->updated_at->diffInHours(Carbon::now()) > 24) {
+            $carbonDate = Carbon::parse($this->updated_at);
+            $timePosted = $carbonDate->format('F j, Y g:i A');
+        }
+
+        return Attribute::make(
+            get: fn() => $timePosted,
         );
     }
 }
