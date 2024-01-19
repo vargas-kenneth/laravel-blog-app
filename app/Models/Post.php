@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\PostImage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,5 +31,12 @@ class Post extends Model
     public function tag(): HasOne
     {
         return $this->hasOne(Tag::class, 'post_id');
+    }
+
+    public function imageFullPath(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => optional($this->postImage)->image_path . optional($this->postImage)->image_name,
+        );
     }
 }
