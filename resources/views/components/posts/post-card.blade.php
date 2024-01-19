@@ -1,6 +1,23 @@
 @props(['post'])
-<article class="mb-4 md:mb-6 block sm:flex gap-x-8 w-full max-w-5xl sm:w-11/12 lg:w-9/12 xl:w-8/12 p-4 border border-gray-400 dark:border-0 shadow-xl bg-lightBlue dark:bg-darkBlue rounded-xl">
-    
+<article class="mb-4 md:mb-6 block sm:flex gap-x-8 w-full max-w-5xl sm:w-11/12 lg:w-9/12 xl:w-8/12 p-4 border border-gray-400 dark:border-0 shadow-xl bg-lightBlue dark:bg-darkBlue rounded-xl relative">
+    @if (request()->route()->getName() === 'profile.posts')
+        <div class="absolute top-2 right-2">
+            <button><span class="icon-[fe--elipsis-v] text-lg text-black"></span></button>
+        </div>
+        <div class="border absolute top-8 right-2 w-20">
+            <ul class="list-none">
+                <li class="border-b p-2 hover:font-bold"><a href="{{ route('posts.edit', $post) }}" >Edit</a></li>
+                <li class="p-2 hover:font-bold">
+                    <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    @endif
+
     <figure class="w-full md:w-2/5 overflow-hidden rounded-xl">
         <img class="h-56 sm:h-72 md:h-80 lg:h-96 w-full rounded-xl object-cover transition-transform ease-in duration-300 hover:scale-125" src="{{ asset($post->image_full_path) }}" alt="{{ $post->postImage->image_alt }}">
     </figure>
