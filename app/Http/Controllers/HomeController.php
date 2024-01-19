@@ -25,8 +25,6 @@ class HomeController extends Controller
                 $carbonDate = Carbon::parse($post->updated_at);
                 $post->time_posted = $carbonDate->format('F j, Y g:i A');
             }
-
-            $post->img_full_path = $post->postImage->image_path . $post->postImage->image_name;
         });
 
         // Limit the post when using eager loading
