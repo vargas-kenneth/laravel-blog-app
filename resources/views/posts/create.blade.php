@@ -10,17 +10,31 @@
                     @csrf
                     <div class="mb-4">
                         <label class="block" for="title">Title:</label>
-                        <x-posts.form.input-text class="w-full" id="title" name="title" placeholder="title"/>
+                        <x-posts.form.input-text 
+                        class="w-full" 
+                        id="title" 
+                        name="title" 
+                        value="{{ old('title') }}"
+                        placeholder="title"/>
                     </div>
                     
                     <div class="mb-4">
                         <label for="content">Content</label>
-                        <x-posts.form.textarea-tinymce name="content" id="content" cols="30" rows="10"></x-posts.form.textarea-tinymce>
+                        <x-posts.form.textarea-tinymce 
+                        name="content" 
+                        id="content" 
+                        cols="30" 
+                        rows="10" 
+                        value="{{ old('title') }}" />
                     </div>
 
                     <div class="mb-4">
                         <label for="tag">Tag:</label>
-                        <x-posts.form.input-text id="tag" name="tag" placeholder="tag"/>
+                        <x-posts.form.input-text 
+                        id="tag" 
+                        name="tag" 
+                        value="{{ old('tag') }}" 
+                        placeholder="tag" />
                     </div>
 
                     <div>
