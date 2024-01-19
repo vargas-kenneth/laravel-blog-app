@@ -12,7 +12,7 @@
                 <time class="ml-4" datetime="2022-08-13">{{ $post->time_posted }}</time>
             </div>
             <div class="mb-3 sm:mb-8 md:mb-6 lg:mb-8">
-                <a href="">
+                <a href="{{ route('posts.show', $post) }}">
                     <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold hover:underline transition duration-300 ease-in-out mb-1 md:mb-4">
                         {{ Str::of($post->title)->limit(35) }}
                     </h2>
