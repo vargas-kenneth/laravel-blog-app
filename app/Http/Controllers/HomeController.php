@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,12 +14,14 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $firstName = explode(' ', $user->name)[0];
-            return view('home')->with('firstName', $firstName);
-        }
+        // $posts = Post::latest('updated_at')->get()->take(10);
+        // Eager loading
+        $posts = Post::with('user:id,name', 'postImage', 'tag')->latest('updated_at')->get();
 
-        return view('home');
+        // Limit the post when using eager loading
+        $limitPost = $posts->take(10);
+        $data = ['posts' => $limitPost];
+
+        return view('home', $data);
     }
 }

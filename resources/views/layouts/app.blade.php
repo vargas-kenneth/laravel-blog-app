@@ -29,6 +29,6 @@
             </main>
         </div>
         
-        @push('scripts')
+        @stack('scripts')
     </body>
 </html>

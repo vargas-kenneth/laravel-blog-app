@@ -31,7 +31,7 @@ class PostImageSeeder extends Seeder
                     PostImage::factory()->create([
                         'user_id' => $user->id,
                         'post_id' => $post->post_id,
-                        'image_path' => 'user_images/'. $userFullname . '/',
+                        'image_path' => 'user_images/'. $userFullname . '/post_images/',
                         'image_alt' => $post->title,
                     ]);
                 }

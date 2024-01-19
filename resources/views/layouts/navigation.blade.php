@@ -25,7 +25,7 @@
                 <a href="{{ route('home') }}" class="text-white hover:text-gray-300">Home</a>
                 
                 @if (Auth::check())
-                    <a href="#" class="text-white hover:text-gray-300">Create Post</a>
+                    <a href="{{ route('posts.create') }}" class="text-white hover:text-gray-300">Create Post</a>
                 @else
                     <a href="{{ route('login') }}" class="text-white hover:text-gray-300">Login</a>
                 @endif
@@ -44,7 +44,7 @@
             <div class="hidden lg:block text-white ml-2">
                 <div class="relative">
                     <div id="user-menu-dropdown-btn" class="flex items-center px-2 border border-transparent hover:border-white transition duration-150 ease-out hover:ease-in">
-                        <span>{{ $firstName }}</span>
+                        <span>{{ explode(' ', Auth::user()->name)[0]  }}</span>
                         <span class="icon-[bxs--down-arrow] ml-2"></span>
                         <span class="icon-[bxs--up-arrow] ml-2 hidden"></span>
                     </div>
@@ -54,7 +54,7 @@
                                 <a href="#">Profile</a>
                             </li>
                             <li class="border-b p-2 hover:font-bold">
-                                <a href="#">Post</a>
+                                <a href="{{ route('profile.posts', strtolower(Str::slug(Auth::user()->name, '_'))) }}">Post</a>
                             </li>
                             <li class="border-b p-2 hover:font-bold">
                                 <div class="flex items-center gap-2">
@@ -100,7 +100,7 @@
         <a href="{{ route('home') }}" class="text-white py-2 hover:bg-gray-700">Home</a>
 
         @if (Auth::check())
-            <a href="#" class="text-white py-2 hover:bg-gray-700">Create Post</a>
+            <a href="{{ route('posts.create') }}" class="text-white py-2 hover:bg-gray-700">Create Post</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <a class="text-white py-2 hover:bg-gray-700"

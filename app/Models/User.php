@@ -51,7 +51,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function postImage(): HasMany
+    public function postImages(): HasMany
     {
         return $this->hasMany(PostImage::class);
     }

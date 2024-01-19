@@ -6,21 +6,35 @@
         <div class="mx-auto w-11/12 xl:w-10/12 pb-20">
             <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Create Blog</h1>
             <div class="p-6 md:p-8">
-                <form action="">
-
+                <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-4">
                         <label class="block" for="title">Title:</label>
-                        <x-posts.form.input-text class="w-full" id="title" name="title" placeholder="title"/>
+                        <x-posts.form.input-text 
+                        class="w-full" 
+                        id="title" 
+                        name="title" 
+                        value="{{ old('title') }}"
+                        placeholder="title"/>
                     </div>
                     
                     <div class="mb-4">
                         <label for="content">Content</label>
-                        <x-posts.form.textarea-tinymce name="content" id="content" cols="30" rows="10"></x-posts.form.textarea-tinymce>
+                        <x-posts.form.textarea-tinymce 
+                        name="content" 
+                        id="content" 
+                        cols="30" 
+                        rows="10" 
+                        value="{{ old('title') }}" />
                     </div>
 
                     <div class="mb-4">
                         <label for="tag">Tag:</label>
-                        <x-posts.form.input-text id="tag" name="tag" placeholder="tag"/>
+                        <x-posts.form.input-text 
+                        id="tag" 
+                        name="tag" 
+                        value="{{ old('tag') }}" 
+                        placeholder="tag" />
                     </div>
 
                     <div>

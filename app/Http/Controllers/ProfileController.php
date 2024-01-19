@@ -57,4 +57,19 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    /**
+     * List of user Posts
+     */
+    public function userPosts(String $username)
+    {
+        // $posts = Post::with('user:id,name', 'postImage', 'tag')->latest('updated_at')->get();
+        $posts = Auth::user()->posts()->latest('updated_at')->get();
+
+        // Limit the post when using eager loading
+        $limitPost = $posts->take(10);
+        $data = ['posts' => $limitPost];
+        
+        return view('profile.posts', $data);
+    }
 }
