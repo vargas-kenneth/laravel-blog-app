@@ -18,15 +18,6 @@ class HomeController extends Controller
         // Eager loading
         $posts = Post::with('user:id,name', 'postImage', 'tag')->latest('updated_at')->get();
 
-        $posts->each(function($post) {
-            $post->time_posted = $post->updated_at->diffForHumans();
-
-            if ($post->updated_at->diffInHours(Carbon::now()) > 24) {
-                $carbonDate = Carbon::parse($post->updated_at);
-                $post->time_posted = $carbonDate->format('F j, Y g:i A');
-            }
-        });
-
         // Limit the post when using eager loading
         $limitPost = $posts->take(10);
         $data = ['posts' => $limitPost];
