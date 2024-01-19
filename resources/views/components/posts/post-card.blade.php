@@ -2,7 +2,7 @@
 <article class="mb-4 md:mb-6 block sm:flex gap-x-8 w-full max-w-5xl sm:w-11/12 lg:w-9/12 xl:w-8/12 p-4 border border-gray-400 dark:border-0 shadow-xl bg-lightBlue dark:bg-darkBlue rounded-xl">
     
     <figure class="w-full md:w-2/5 overflow-hidden rounded-xl">
-        <img class="h-56 sm:h-72 md:h-80 lg:h-96 w-full rounded-xl object-cover transition-transform ease-in duration-300 hover:scale-125" src="{{ asset($post->img_full_path) }}" alt="{{ $post->postImage->image_alt }}">
+        <img class="h-56 sm:h-72 md:h-80 lg:h-96 w-full rounded-xl object-cover transition-transform ease-in duration-300 hover:scale-125" src="{{ asset($post->image_full_path) }}" alt="{{ $post->postImage->image_alt }}">
     </figure>
     
     <div class="w-full md:w-3/5 py-3">
