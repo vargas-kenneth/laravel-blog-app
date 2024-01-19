@@ -54,7 +54,7 @@
                                 <a href="#">Profile</a>
                             </li>
                             <li class="border-b p-2 hover:font-bold">
-                                <a href="#">Post</a>
+                                <a href="{{ route('profile.posts', strtolower(Str::slug(Auth::user()->name, '_'))) }}">Post</a>
                             </li>
                             <li class="border-b p-2 hover:font-bold">
                                 <div class="flex items-center gap-2">
