@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Events\PostCreatedEvent;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -68,6 +69,8 @@ class PostController extends Controller
             'tag_name' => $validated['tag'],
         ]);
 
+        PostCreatedEvent::dispatch($post);
+        
         return to_route('home');
     }
 
