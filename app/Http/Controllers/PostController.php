@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Events\PostCreatedEvent;
+use App\Events\PostDeletedEvent;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -68,6 +70,8 @@ class PostController extends Controller
             'tag_name' => $validated['tag'],
         ]);
 
+        PostCreatedEvent::dispatch($post);
+        
         return to_route('home');
     }
 
@@ -152,12 +156,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $this->authorize('update', $post);
-
-        Storage::delete($post->image_full_path);
-        $post->postImage()->delete();
-        $post->tag()->delete();
+        $this->authorize('delete', $post);
         $post->delete();
+        
+        if ($post->trashed()) {
+            PostDeletedEvent::dispatch($post);
+        }
 
         return to_route('home');
     }
